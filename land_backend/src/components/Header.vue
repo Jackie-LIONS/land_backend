@@ -2,10 +2,20 @@
     <div class="contain">
         <span class="title">土地管理系统后台</span>
         <div class="userInfo">
+            <a-input-group>
+                <a-select :options="['土地号','土地类型','拥有者']" v-model="optionValue" :style="{width:'120px'}" placeholder="土地号" />
+                <a-input-search v-model="searchValue" @search="searchEvent" :style="{width:'260px','margin-right': '50px'}" placeholder="请输入内容" search-button>
+                    <template #button-icon>
+                        <icon-search />
+                    </template>
+                    <template #button-default>
+                        搜索
+                    </template>
+                </a-input-search>
+            </a-input-group>
             <template v-if="aa">
                 <a-avatar direction="vertical">
-                    <img alt="avatar"
-                        src="https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/3ee5f13fb09879ecb5185e440cef6eb9.png~tplv-uwbnlip3yd-webp.webp" />
+                    <img alt="avatar" src="https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/3ee5f13fb09879ecb5185e440cef6eb9.png~tplv-uwbnlip3yd-webp.webp" />
                 </a-avatar>
                 <span class="usr-name">{{ username }}</span>
             </template>
@@ -19,8 +29,11 @@
 
 <script setup>
 import api from '@/api/index.js';
-import { ref } from "vue";
+import { ref, inject } from "vue";
 import { useRouter } from 'vue-router';
+import {
+    IconSearch
+} from "@arco-design/web-vue/es/icon";
 
 // 登录仓库对象
 const isLoggedIn = ref(false);  // 默认未登录
@@ -36,6 +49,17 @@ const goToLogin = () => {
 // 例如，从 API 获取用户信息后设置
 // isLoggedIn.value = true; // 模拟已登录状态
 // username.value = 'Alice'; // 从用户信息中获取用户名
+
+
+// 搜索框内容
+const searchData = inject('searchData');
+const updateSearchData = inject('updateSearchData');
+const searchValue = ref('');
+const optionValue = ref('土地号');
+const searchEvent = () => {
+    updateSearchData(optionValue.value + '-' + searchValue.value);
+}
+
 </script>
 
 
