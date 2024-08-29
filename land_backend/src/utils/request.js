@@ -37,7 +37,6 @@ instance.interceptors.request.use(
     config =>{
         const target = JSON.parse(localStorage.getItem('token'));
         localStorage.getItem('token') ? config.headers.Authorization = target.token : null
-        console.log(target,"ssss");
         return config
     },
     error=> {

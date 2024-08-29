@@ -57,6 +57,9 @@ const api = {
     postLandDelete(params){
         return axios.post('/api'+base.getLandDelete+params)
     },
+    postLandPicUpload(params){
+        return axios.post('/api'+base.getLandPicUpload,params)
+    },
 }
 
 export default api; 

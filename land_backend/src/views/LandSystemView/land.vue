@@ -11,7 +11,7 @@
     </a-button>
 
     <!-- 这里是添加的弹窗组件 -->
-    <add-type-modal ref="addInfoModal" @refreshList="getCategorys"></add-type-modal>
+    <add-land-modal ref="addInfoModal" @refreshList="getCategorys"></add-land-modal>
     <a-table :columns="columns" :data="data" @page-change="pageChange" @page-size-change="pageSizeChange" :pagination="{
         pageSize: 6,
         // current: searchParams.current,
@@ -24,10 +24,10 @@
             <a-button size="small" type="primary" status="danger" @click="confirmDelete(record)">删除</a-button>
         </template>
         <template #landPic="{ record }">
-            <img :src="record.landPic" alt="land-pic" style="width: 100px; height: auto; border-radius: 4px;" />
+            <img :src="`/api${record.landPic}`" alt="land-pic" style="width: 100px; height: auto; border-radius: 4px;" />
         </template>
     </a-table>
-    <change-type-info-modal :visible="visible" :modalData="modalData" @closeModal="closeModal"></change-type-info-modal>
+    <change-land-modal :visible="visible" :modalData="modalData" @closeModal="closeModal"></change-land-modal>
     <a-modal v-model:visible="deleteVisible" @ok="handleDeleteOk" @cancel="handleDeleteCancel">
         <template #title>确认删除</template>
         <div>确定要删除这个土地吗？</div>
@@ -37,8 +37,8 @@
 <script setup>
 import { reactive, ref, onMounted } from "vue";
 import { IconBookmark } from "@arco-design/web-vue/es/icon";
-import changeTypeInfoModal from "./component/changeTypeInfoModal.vue";
-import AddTypeModal from "./component/AddTypeModal.vue";  // 引入新增弹窗组件
+import changeLandModal from "./component/changeLandModal.vue";
+import AddLandModal from "./component/AddLandModal.vue";  // 引入新增弹窗组件
 import api from '@/api/index.js';
 import { Message } from '@arco-design/web-vue';
 
