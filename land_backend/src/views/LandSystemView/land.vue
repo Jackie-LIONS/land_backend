@@ -10,6 +10,12 @@
         <template #default>增加</template>
     </a-button>
 
+
+    <!-- 搜索框数据 -->
+    {{ searchData }}
+
+
+
     <!-- 这里是添加的弹窗组件 -->
     <add-land-modal ref="addInfoModal" @refreshList="getCategorys"></add-land-modal>
     <a-table :columns="columns" :data="data" @page-change="pageChange" @page-size-change="pageSizeChange" :pagination="{
@@ -35,7 +41,7 @@
 </template>
 
 <script setup>
-import { reactive, ref, onMounted } from "vue";
+import { reactive, ref, onMounted, inject, watch } from "vue";
 import { IconBookmark } from "@arco-design/web-vue/es/icon";
 import changeLandModal from "./component/changeLandModal.vue";
 import AddLandModal from "./component/AddLandModal.vue";  // 引入新增弹窗组件
@@ -181,6 +187,16 @@ const addInfoModal = ref(null);
 const showAddModal = () => {
     addInfoModal.value.showModal();
 };
+
+
+// 搜索框
+const searchData = inject('searchData');
+watch(
+    () => searchData.value,
+    (newValue) => {
+        console.log('searchData  发生变化', newValue);
+    }
+);
 </script>
 
 <style scoped>

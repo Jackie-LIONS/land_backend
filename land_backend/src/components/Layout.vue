@@ -16,9 +16,18 @@
     </a-layout>
 </template>
 <script setup>
+import { ref, provide } from "vue";
 import { RouterView } from 'vue-router'
 import SiderNav from '@/components/SiderNav.vue'
 import Header from './Header.vue'
+
+const searchData = ref('');
+const updateSearchDataValue = (newValue) => {
+    searchData.value = newValue;
+};
+provide('searchData', searchData);
+provide('updateSearchData', updateSearchDataValue);
+
 </script>
 <style scoped>
 .arco-layout-content {
