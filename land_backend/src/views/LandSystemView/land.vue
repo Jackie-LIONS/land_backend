@@ -30,7 +30,7 @@
             <a-button size="small" type="primary" status="danger" @click="confirmDelete(record)">删除</a-button>
         </template>
         <template #landPic="{ record }">
-            <img :src="`/api${record.landPic}`" alt="land-pic" style="width: 100px; height: auto; border-radius: 4px;" />
+            <img :src="record.landPic" alt="land-pic" style="width: 100px; height: auto; border-radius: 4px;" />
         </template>
     </a-table>
     <change-land-modal :visible="visible" :modalData="modalData" @closeModal="closeModal"></change-land-modal>
