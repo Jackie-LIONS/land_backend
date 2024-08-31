@@ -13,7 +13,7 @@
                     <a-input v-model="modalData.area" placeholder="请输入土地类型" />
                 </a-form-item>
                 <a-form-item label="土地类型:">
-                    <a-input v-model="modalData.type" placeholder="请输入土地类型" />
+                    <a-input v-model="modalData.landtype.type" placeholder="请输入土地类型" />
                 </a-form-item>
                 <a-form-item label="土地用途:">
                     <a-input v-model="modalData.purpose" placeholder="请输入土地类型" />
@@ -22,7 +22,7 @@
                     <a-input v-model="modalData.user" placeholder="请输入使用者" />
                 </a-form-item>
                 <a-form-item label="土地图片:">
-                    <a-input v-model="modalData.landPic" placeholder="请输入土地图片" />
+                    <img :src="modalData.landPic" alt="land-pic" style="width: 100px; height: auto; border-radius: 4px;" />
                 </a-form-item>
                 <a-form-item label="使用时间:">
                     {{ modalData.useTime }}

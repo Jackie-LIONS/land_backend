@@ -19,6 +19,7 @@ const base ={
     getLandUpdate: "/land/update",
     getLandAll: "/land/all",
     getLandDelete: "/land/delete?typeId=",
-    getLandPicUpload: "/land/upload"
+    getLandPicUpload: "/land/upload",
+    getLandSearch: "/land/search"
 }
 export default base

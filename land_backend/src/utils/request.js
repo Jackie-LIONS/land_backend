@@ -35,8 +35,9 @@ const instance = axios.create({
 })
 instance.interceptors.request.use(
     config =>{
-        const target = JSON.parse(localStorage.getItem('token'));
-        localStorage.getItem('token') ? config.headers.Authorization = target.token : null
+        const target = sessionStorage.getItem('token');
+       
+        sessionStorage.getItem('token') ? config.headers.Authorization = target : null
         return config
     },
     error=> {

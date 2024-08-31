@@ -105,7 +105,7 @@ const columns = reactive([
     },
 ]);
 // 表格数据
-const data = reactive([
+let data = reactive([
     {
         typeId: "1",
         type: "私有",
@@ -123,7 +123,7 @@ const getCategorys = async () => {
     }).then(res => {
         if (res.code === 200) {
             total.value = res.data.total,
-                Object.assign(data, res.data.records);
+            Object.assign(data, res.data.records);
         }
     })
 }
@@ -188,13 +188,20 @@ const showAddModal = () => {
     addInfoModal.value.showModal();
 };
 
-
 // 搜索框
 const searchData = inject('searchData');
 watch(
     () => searchData.value,
     (newValue) => {
-        console.log('searchData  发生变化', newValue);
+        const params = newValue.split("-");
+        api.getLandSearch({
+            [params[0]]: params[1]
+        }).then(res=>{
+            if(res.code == 200){
+                data.length = 0;
+                Object.assign(data, res.data);
+            }
+        })
     }
 );
 </script>
@@ -202,7 +209,8 @@ watch(
 <style scoped>
 .arco-btn-secondary {
     background-color: #7eb712;
-    margin: 15px 0 -15px 0;
+    margin: 15px 0 -15px 0
+    ;
     color: white;
 }
 

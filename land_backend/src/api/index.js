@@ -60,6 +60,9 @@ const api = {
     postLandPicUpload(params){
         return axios.post('/api'+base.getLandPicUpload,params)
     },
+    getLandSearch(params){
+        return axios.get('/api'+base.getLandSearch,{params})
+    },
 }
 
 export default api; 
